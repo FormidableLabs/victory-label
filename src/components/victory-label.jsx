@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import Radium from "radium";
 import Util from "victory-util";
 import _ from "lodash";
+import { Surface, Group, Text, Transform } from "react-art";
 
 const styles = {
   stroke: "transparent",
@@ -194,20 +195,24 @@ export default class VictoryLabel extends React.Component {
 
   render() {
     this.getCalculatedValues(this.props);
+
+    const { fontSize, fontFamily, fill } = this.style;
+    const stroke = this.style.stroke !== "transparent" ? this.style.stroke : null;
+
     return (
-      <text x={this.props.x} y={this.props.y} dy={this.dy} dx={this.dx}
-        textAnchor={this.textAnchor}
-        transform={this.transform}
-        style={this.style}
+      <Text
+        x={this.props.x}
+        y={this.props.y}
+        dy={this.dy}
+        dx={this.dx}
+        alignment={this.textAnchor}
+        transform={new Transform().translate(this.transform)}
+        font={{ fontSize, fontFamily }}
+        stroke={stroke}
+        fill={fill}
       >
-        {this.content.map((line, i) => {
-          return (
-            <tspan key={i} x={this.props.x} dy={i ? this.lineHeight : undefined}>
-              {line}
-            </tspan>
-          );
-        })}
-      </text>
+        { this.content.map((line, i) => line) }
+      </Text>
     );
   }
 }
