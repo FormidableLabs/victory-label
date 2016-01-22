@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import Radium from "radium";
 import Util from "victory-util";
 import _ from "lodash";
-import { Surface, Group, Text, Transform } from "react-art";
+import { Text, Transform } from "react-art";
 
 const styles = {
   stroke: "transparent",
@@ -211,7 +211,7 @@ export default class VictoryLabel extends React.Component {
         stroke={stroke}
         fill={fill}
       >
-        { this.content.map((line, i) => line) }
+        { this.content.map((line) => line) }
       </Text>
     );
   }

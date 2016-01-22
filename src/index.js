@@ -1,3 +1,1 @@
-module.exports = {
-  VictoryLabel: require("./components/victory-label")
-};
+export VictoryLabel from "./components/victory-label";
