@@ -22,6 +22,7 @@
   "dependencies": {
     "builder": "~2.2.1",
     "builder-victory-component": "~0.1.2",
+    "react-art": "git+https://github.com/boygirl/react-art#supportBrowserColors",
     "victory-util": "^2.1.0"
   },
   "devDependencies": {
