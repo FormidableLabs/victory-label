@@ -6,14 +6,7 @@ import { Transform } from "react-art";
 module.exports = {
   getStyles(props, defaultStyles) {
     const style = props.style ? merge({}, defaultStyles, props.style) : defaultStyles;
-    return this.cleanStyle(Chart.evaluateStyle(style));
-  },
-
-  cleanStyle(style) {
-    const {fill, stroke} = style;
-    const cleanStroke = stroke === "transparent" || stroke === "none" ? null : stroke;
-    const cleanFill = fill === "transparent" || fill === "none" ? null : fill;
-    return merge({}, style, {fill: cleanFill, stroke: cleanStroke});
+    return Style.removeInvisible(Chart.evaluateStyle(style));
   },
 
   getContentLength(props) {

@@ -2,6 +2,7 @@
 /* global sinon */
 
 import Helpers from "src/helper-methods";
+import { Style } from "victory-util";
 import { Transform } from "react-art";
 
 describe("helper-methods", () => {
@@ -9,7 +10,7 @@ describe("helper-methods", () => {
     let sandbox;
     beforeEach(() => {
       sandbox = sinon.sandbox.create();
-      sandbox.spy(Helpers, "cleanStyle");
+      sandbox.spy(Style, "removeInvisible");
     });
 
     afterEach(() => {
@@ -23,22 +24,22 @@ describe("helper-methods", () => {
 
     it("returns defaultStyles when styles are not defined", () => {
       const style = Helpers.getStyles({}, defaultStyles);
-      expect(Helpers.cleanStyle).calledWith(defaultStyles)
+      expect(Style.removeInvisible).calledWith(defaultStyles)
         .and.returned(defaultStyles);
       expect(style).to.eql(defaultStyles);
     });
 
     it("merges props with default styles", () => {
       const style = Helpers.getStyles({style: {fill: "blue"}}, defaultStyles);
-      expect(Helpers.cleanStyle).called.and.returned({fill: "blue", fontSize: 16});
+      expect(Style.removeInvisible).called.and.returned({fill: "blue", fontSize: 16});
       expect(style).to.eql({fill: "blue", fontSize: 16});
     });
 
     it("cleans style values", () => {
       const style = Helpers.getStyles({style: {stroke: "transparent"}}, defaultStyles);
-      expect(Helpers.cleanStyle).calledWith({stroke: "transparent", fill: "red", fontSize: 16})
-        .and.returned({stroke: null, fill: "red", fontSize: 16});
-      expect(style).to.eql({stroke: null, fill: "red", fontSize: 16});
+      expect(Style.removeInvisible).calledWith({stroke: "transparent", fill: "red", fontSize: 16})
+        .and.returned({fill: "red", fontSize: 16});
+      expect(style).to.eql({fill: "red", fontSize: 16});
     });
   });
 
