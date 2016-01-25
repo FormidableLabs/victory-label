@@ -13,8 +13,8 @@ export default class App extends React.Component {
         </p>
         <Surface width="600" height="1800" style={{ border: "1px solid #ccc", padding: 40}}>
 
-          <Circle x={0} y={0} radius={2} fill="red"/>
-          <VictoryLabel x={0} y={0}>
+          <Circle x={20} y={50} radius={2} fill="red"/>
+          <VictoryLabel x={20} y={50} style={{fill: "tomato", opacity: 0.6}}>
             {"Victory is awesome.\nThis is default anchoring.\nCapisce?"}
           </VictoryLabel>
 
@@ -69,6 +69,12 @@ export default class App extends React.Component {
             {"Victory is awesome.\nThis is (start, middle) anchoring.\nCapisce?"}
           </VictoryLabel>
 
+          <Circle x={300} y={1450} radius={2} fill="red"/>
+          <VictoryLabel x={300} y={1450}
+            transform={"rotate(50) translate(0, 50) "}
+          >
+            {"Victory is awesome.\nThis is ROTATED.\nCapisce?"}
+          </VictoryLabel>
         </Surface>
       </div>
     );
