@@ -16,12 +16,13 @@
   "scripts": {
     "postinstall": "cd lib || builder run npm:postinstall || (echo 'POSTINSTALL FAILED: If using npm v2, please upgrade to npm v3. See bug https://github.com/FormidableLabs/builder/issues/35' && exit 1)",
     "preversion": "builder run npm:preversion",
-    "version": "builder run npm:version && git add dist && git commit -m \"Commit 'dist/' for publishing\"",
+    "version": "builder run npm:version && git add dist && git commit -m \"Commit 'dist/' for publishing\" && builder run pkg-deps-to-dev",
+    "postversion": "git checkout package.json",
     "test": "builder run npm:test"
   },
   "dependencies": {
     "builder": "FormidableLabs/builder#feature-expand-archetype",
-    "builder-victory-component": "FormidableLabs/builder-victory-component#feature-expand-archetype",
+    "builder-victory-component": "FormidableLabs/builder-victory-component#feature-npm-package-swapping",
     "lodash": "^3.10.1",
     "radium": "^0.16.2",
     "victory-util": "FormidableLabs/victory-util#feature-expand-archetype"
